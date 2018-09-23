@@ -31,21 +31,27 @@ Partial Class Main
         Me.Button1 = New System.Windows.Forms.Button()
         Me.WebBrowserBox = New System.Windows.Forms.WebBrowser()
         Me.Base = New System.Windows.Forms.GroupBox()
-        Me.lock = New System.Windows.Forms.Button()
+        Me.OpenExcel = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.renovate = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.classListBox = New System.Windows.Forms.ComboBox()
         Me.gradeListBox = New System.Windows.Forms.ComboBox()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.PostTimerThread = New System.Windows.Forms.Timer(Me.components)
+        Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.DataSet = New System.Data.DataSet()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ExcelState = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.LoginGroup.SuspendLayout()
         Me.Base.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
+        Me.StatusStrip.SuspendLayout()
+        CType(Me.DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'LoginGroup
@@ -108,17 +114,16 @@ Partial Class Main
         '
         'WebBrowserBox
         '
-        Me.WebBrowserBox.Location = New System.Drawing.Point(240, 12)
+        Me.WebBrowserBox.Location = New System.Drawing.Point(10, 207)
         Me.WebBrowserBox.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowserBox.Name = "WebBrowserBox"
-        Me.WebBrowserBox.Size = New System.Drawing.Size(617, 375)
+        Me.WebBrowserBox.Size = New System.Drawing.Size(454, 77)
         Me.WebBrowserBox.TabIndex = 2
         Me.WebBrowserBox.Url = New System.Uri("http://www.gxufz.com:1234", System.UriKind.Absolute)
+        Me.WebBrowserBox.Visible = False
         '
         'Base
         '
-        Me.Base.Controls.Add(Me.lock)
-        Me.Base.Controls.Add(Me.Button3)
         Me.Base.Controls.Add(Me.Label4)
         Me.Base.Controls.Add(Me.renovate)
         Me.Base.Controls.Add(Me.Label3)
@@ -127,25 +132,25 @@ Partial Class Main
         Me.Base.Enabled = False
         Me.Base.Location = New System.Drawing.Point(10, 124)
         Me.Base.Name = "Base"
-        Me.Base.Size = New System.Drawing.Size(224, 102)
+        Me.Base.Size = New System.Drawing.Size(224, 77)
         Me.Base.TabIndex = 3
         Me.Base.TabStop = False
         Me.Base.Text = "基本设置窗口"
         '
-        'lock
+        'OpenExcel
         '
-        Me.lock.Location = New System.Drawing.Point(170, 45)
-        Me.lock.Name = "lock"
-        Me.lock.Size = New System.Drawing.Size(46, 20)
-        Me.lock.TabIndex = 10
-        Me.lock.Text = "锁定"
-        Me.lock.UseVisualStyleBackColor = True
+        Me.OpenExcel.Location = New System.Drawing.Point(9, 49)
+        Me.OpenExcel.Name = "OpenExcel"
+        Me.OpenExcel.Size = New System.Drawing.Size(126, 23)
+        Me.OpenExcel.TabIndex = 10
+        Me.OpenExcel.Text = "添加Excel文件"
+        Me.OpenExcel.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(10, 71)
+        Me.Button3.Location = New System.Drawing.Point(9, 20)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(206, 23)
+        Me.Button3.Size = New System.Drawing.Size(209, 23)
         Me.Button3.TabIndex = 9
         Me.Button3.Text = "设置请假规则"
         Me.Button3.UseVisualStyleBackColor = True
@@ -184,7 +189,7 @@ Partial Class Main
         Me.classListBox.FormattingEnabled = True
         Me.classListBox.Location = New System.Drawing.Point(61, 46)
         Me.classListBox.Name = "classListBox"
-        Me.classListBox.Size = New System.Drawing.Size(103, 20)
+        Me.classListBox.Size = New System.Drawing.Size(155, 20)
         Me.classListBox.TabIndex = 1
         '
         'gradeListBox
@@ -196,14 +201,14 @@ Partial Class Main
         Me.gradeListBox.Size = New System.Drawing.Size(103, 20)
         Me.gradeListBox.TabIndex = 0
         '
-        'StatusStrip1
+        'StatusStrip
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLabel})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 401)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(869, 22)
-        Me.StatusStrip1.TabIndex = 4
-        Me.StatusStrip1.Text = "StatusStrip1"
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLabel})
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 298)
+        Me.StatusStrip.Name = "StatusStrip"
+        Me.StatusStrip.Size = New System.Drawing.Size(476, 22)
+        Me.StatusStrip.TabIndex = 4
+        Me.StatusStrip.Text = "StatusStrip1"
         '
         'StatusLabel
         '
@@ -211,45 +216,83 @@ Partial Class Main
         Me.StatusLabel.Size = New System.Drawing.Size(125, 17)
         Me.StatusLabel.Text = "正在连接请假服务器..."
         '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(19, 246)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox1.TabIndex = 5
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(125, 244)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 6
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'PostTimerThread
         '
         Me.PostTimerThread.Interval = 1000
+        '
+        'OpenFileDialog
+        '
+        Me.OpenFileDialog.Filter = "Excel表格|*.xls;*.xlsx"
+        Me.OpenFileDialog.Title = "请选择答题卡结果文件 Excel格式"
+        '
+        'DataSet
+        '
+        Me.DataSet.DataSetName = "NewDataSet"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Button2)
+        Me.GroupBox1.Controls.Add(Me.ExcelState)
+        Me.GroupBox1.Controls.Add(Me.Button3)
+        Me.GroupBox1.Controls.Add(Me.OpenExcel)
+        Me.GroupBox1.Location = New System.Drawing.Point(240, 12)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(224, 106)
+        Me.GroupBox1.TabIndex = 11
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "学生列表设置"
+        '
+        'ExcelState
+        '
+        Me.ExcelState.AutoSize = True
+        Me.ExcelState.Location = New System.Drawing.Point(10, 80)
+        Me.ExcelState.Name = "ExcelState"
+        Me.ExcelState.Size = New System.Drawing.Size(125, 12)
+        Me.ExcelState.TabIndex = 11
+        Me.ExcelState.Text = "请打开答题卡结果文件"
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(141, 49)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(77, 23)
+        Me.Button2.TabIndex = 12
+        Me.Button2.Text = "清空数据"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(240, 124)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(224, 77)
+        Me.Button4.TabIndex = 12
+        Me.Button4.Text = "执行请假任务"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(869, 423)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.TextBox1)
+        Me.ClientSize = New System.Drawing.Size(476, 320)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.WebBrowserBox)
-        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.Base)
         Me.Controls.Add(Me.LoginGroup)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "Main"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "广西大学附属中学 自动化请假系统 By:何泽恩"
         Me.LoginGroup.ResumeLayout(False)
         Me.LoginGroup.PerformLayout()
         Me.Base.ResumeLayout(False)
         Me.Base.PerformLayout()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
+        Me.StatusStrip.ResumeLayout(False)
+        Me.StatusStrip.PerformLayout()
+        CType(Me.DataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -265,14 +308,18 @@ Partial Class Main
     Friend WithEvents Base As GroupBox
     Friend WithEvents classListBox As ComboBox
     Friend WithEvents gradeListBox As ComboBox
-    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents StatusStrip As StatusStrip
     Friend WithEvents StatusLabel As ToolStripStatusLabel
     Friend WithEvents Label4 As Label
     Friend WithEvents renovate As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents Button3 As Button
-    Friend WithEvents lock As Button
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Button2 As Button
     Friend WithEvents PostTimerThread As Timer
+    Friend WithEvents OpenFileDialog As OpenFileDialog
+    Friend WithEvents OpenExcel As Button
+    Friend WithEvents DataSet As DataSet
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents ExcelState As Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button4 As Button
 End Class

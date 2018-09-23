@@ -1,4 +1,6 @@
-﻿Public Class Main
+﻿Imports System.Data.OleDb
+
+Public Class Main
 
     Dim gradeList As HtmlElement
     Dim classList As HtmlElement
@@ -126,7 +128,7 @@
 
     End Sub
 
-    Private Sub lock_Click(sender As Object, e As EventArgs) Handles lock.Click
+    Private Sub lock_Click(sender As Object, e As EventArgs)
 
         classListBox.Enabled = Not gradeListBox.Enabled
         gradeListBox.Enabled = Not gradeListBox.Enabled
@@ -134,11 +136,11 @@
 
     End Sub
 
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs)
 
 
         PostTimerThread.Enabled = True
-        actionClass.DoLeave(TextBox1.Text, Date.Now, Date.Now.AddHours(10), False, "其他")
+        'actionClass.DoLeave(TextBox1.Text, Date.Now, Date.Now.AddMinutes(10), False, "其他")
 
     End Sub
 
@@ -168,5 +170,22 @@
 
         End If
 
+    End Sub
+
+    Private Sub OpenExcel_Click_1(sender As Object, e As EventArgs) Handles OpenExcel.Click
+        If OpenFileDialog.ShowDialog = DialogResult.OK Then
+
+            Dim strConn As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + OpenFileDialog.FileName + ";Extended Properties='Excel 12.0;HDR=No'"
+            Dim DataAdapter As New OleDbDataAdapter("select * from [Sheet1$]", strConn)
+            DataAdapter.Fill(DataSet)
+            ExcelState.Text = "该列表中包含" + Str(DataSet.Tables(0).Rows.Count - 1) + "个学生"
+
+            'DataSet.Tables(0).Rows(2).Item(5).ToString()
+        End If
+    End Sub
+
+    Private Sub Button2_Click_2(sender As Object, e As EventArgs) Handles Button2.Click
+        DataSet.Clear()
+        ExcelState.Text = "请打开答题卡结果文件"
     End Sub
 End Class

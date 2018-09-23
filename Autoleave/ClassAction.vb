@@ -161,6 +161,8 @@
 
                 End Select
 
+                MessageBox.Show("开始时间" + startDate.ToString("yyyy-MM-dd HH:mm") + "\n结束时间" + endDate.ToString("yyyy-MM-dd HH:mm"))
+
                 '格式化并输出请假日期
                 startDateHtml.SetAttribute("value", startDate.ToString("yyyy-MM-dd"))
                 endDateHtml.SetAttribute("value", endDate.ToString("yyyy-MM-dd"))
