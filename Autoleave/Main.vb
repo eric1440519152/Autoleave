@@ -188,4 +188,32 @@ Public Class Main
         DataSet.Clear()
         ExcelState.Text = "请打开答题卡结果文件"
     End Sub
+
+    Private Sub StartLeaveButton_Click(sender As Object, e As EventArgs) Handles StartLeaveButton.Click
+
+        '读入请假配置数据
+        Dim LeaverulesTableAdapter As New settingDataSetTableAdapters.leaverulesTableAdapter
+        Dim SettingDataSet As New settingDataSet
+        LeaverulesTableAdapter.Fill(SettingDataSet.leaverules)
+
+        If classListBox.SelectedItem <> Nothing And gradeListBox.SelectedItem <> Nothing And DataSet.Tables.Count <> 0 And SettingDataSet.leaverules.Rows.Count <> 0 Then
+            '设置完成，开始请假操作
+            Dim RulesCount As Integer = SettingDataSet.leaverules.Rows.Count
+            Dim stuCount As Integer = DataSet.Tables(0).Rows.Count
+
+            For i = 0 To RulesCount - 1
+                '逐个规则执行请假操作
+                Dim ID = SettingDataSet.leaverules.Rows(i).Item(0).ToString
+                Dim Choice = SettingDataSet.leaverules.Rows(i).Item(1).ToString
+                Dim startTime As Date = SettingDataSet.leaverules.Rows(i).Item(2)
+                Dim endTime As Date = SettingDataSet.leaverules.Rows(i).Item(3)
+                Dim ifMessage As Boolean = SettingDataSet.leaverules.Rows(i).Item(4)
+                Dim leaveType = SettingDataSet.leaverules.Rows(i).Item(5).ToString
+
+                '对学生列表进行循环操作
+            Next
+        Else
+            MessageBox.Show("设置未完成")
+        End If
+    End Sub
 End Class

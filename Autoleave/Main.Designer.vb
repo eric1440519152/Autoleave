@@ -46,7 +46,7 @@ Partial Class Main
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.ExcelState = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.StartLeaveButton = New System.Windows.Forms.Button()
         Me.LoginGroup.SuspendLayout()
         Me.Base.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
@@ -260,21 +260,21 @@ Partial Class Main
         Me.Button2.Text = "清空数据"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Button4
+        'StartLeaveButton
         '
-        Me.Button4.Location = New System.Drawing.Point(240, 124)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(224, 77)
-        Me.Button4.TabIndex = 12
-        Me.Button4.Text = "执行请假任务"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.StartLeaveButton.Location = New System.Drawing.Point(240, 124)
+        Me.StartLeaveButton.Name = "StartLeaveButton"
+        Me.StartLeaveButton.Size = New System.Drawing.Size(224, 77)
+        Me.StartLeaveButton.TabIndex = 12
+        Me.StartLeaveButton.Text = "执行请假任务"
+        Me.StartLeaveButton.UseVisualStyleBackColor = True
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(476, 320)
-        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.StartLeaveButton)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.WebBrowserBox)
         Me.Controls.Add(Me.StatusStrip)
@@ -321,5 +321,5 @@ Partial Class Main
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents ExcelState As Label
     Friend WithEvents Button2 As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents StartLeaveButton As Button
 End Class

@@ -36,15 +36,15 @@ Partial Class Settings
         Me.Button1 = New System.Windows.Forms.Button()
         Me.message = New System.Windows.Forms.CheckBox()
         Me.leaveType = New System.Windows.Forms.ComboBox()
-        Me.LeaverulesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.SettingDataSet = New Autoleave.settingDataSet()
-        Me.LeaverulesTableAdapter = New Autoleave.settingDataSetTableAdapters.leaverulesTableAdapter()
         Me.题号DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.选项DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.开始时间DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.结束时间DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.是否短信通知DataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.请假类型DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.LeaverulesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.SettingDataSet = New Autoleave.settingDataSet()
+        Me.LeaverulesTableAdapter = New Autoleave.settingDataSetTableAdapters.leaverulesTableAdapter()
         CType(Me.leaveRulesData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LeaverulesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SettingDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,20 +174,6 @@ Partial Class Settings
         Me.leaveType.Size = New System.Drawing.Size(204, 20)
         Me.leaveType.TabIndex = 14
         '
-        'LeaverulesBindingSource
-        '
-        Me.LeaverulesBindingSource.DataMember = "leaverules"
-        Me.LeaverulesBindingSource.DataSource = Me.SettingDataSet
-        '
-        'SettingDataSet
-        '
-        Me.SettingDataSet.DataSetName = "settingDataSet"
-        Me.SettingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'LeaverulesTableAdapter
-        '
-        Me.LeaverulesTableAdapter.ClearBeforeFill = True
-        '
         '题号DataGridViewTextBoxColumn
         '
         Me.题号DataGridViewTextBoxColumn.DataPropertyName = "题号"
@@ -229,6 +215,20 @@ Partial Class Settings
         Me.请假类型DataGridViewTextBoxColumn.Name = "请假类型DataGridViewTextBoxColumn"
         Me.请假类型DataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.请假类型DataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'LeaverulesBindingSource
+        '
+        Me.LeaverulesBindingSource.DataMember = "leaverules"
+        Me.LeaverulesBindingSource.DataSource = Me.SettingDataSet
+        '
+        'SettingDataSet
+        '
+        Me.SettingDataSet.DataSetName = "settingDataSet"
+        Me.SettingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'LeaverulesTableAdapter
+        '
+        Me.LeaverulesTableAdapter.ClearBeforeFill = True
         '
         'Settings
         '

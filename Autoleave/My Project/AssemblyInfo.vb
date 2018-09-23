@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Autoleave")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("Autoleave")>
-<Assembly: AssemblyCopyright("Copyright ©  2018")>
+<Assembly: AssemblyCompany("广西南宁海纳信息科技有限责任公司")>
+<Assembly: AssemblyProduct("广西大学附属中学自动请假系统")>
+<Assembly: AssemblyCopyright("Copyright © 何泽恩 2018")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
