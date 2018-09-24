@@ -1,7 +1,8 @@
 ﻿Public Class ClassAction
-    Public unFoundName() As String
+    Public unFoundName As String
     Public finishPost As Boolean
     Public finishSet As Boolean
+    Public firstPost As Boolean = True
     Public ifMessageForTimer As Boolean
 
     ''' <summary>
@@ -191,7 +192,9 @@
 
         '向数组中添加未被找到的名字
         If checkStu = False Then
-            unFoundName(unFoundName.Count + 1) = name
+
+            unFoundName = unFoundName + name + ";"
+
         End If
 
 

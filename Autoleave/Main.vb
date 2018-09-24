@@ -168,6 +168,9 @@ Public Class Main
 
             StatusLabel.Text = "完成"
 
+            '标记不是第一次Post
+            actionClass.finishPost = False
+
         End If
 
     End Sub
@@ -203,7 +206,7 @@ Public Class Main
 
             For i = 0 To RulesCount - 1
                 '逐个规则执行请假操作
-                Dim ID = SettingDataSet.leaverules.Rows(i).Item(0).ToString
+                Dim ID As Integer = SettingDataSet.leaverules.Rows(i).Item(0).ToString
                 Dim Choice = SettingDataSet.leaverules.Rows(i).Item(1).ToString
                 Dim startTime As Date = SettingDataSet.leaverules.Rows(i).Item(2)
                 Dim endTime As Date = SettingDataSet.leaverules.Rows(i).Item(3)
@@ -211,7 +214,36 @@ Public Class Main
                 Dim leaveType = SettingDataSet.leaverules.Rows(i).Item(5).ToString
 
                 '对学生列表进行循环操作
+                For a = 1 To stuCount - 1
+                    If DataSet.Tables(0).Rows(a).Item(4 + ID) = Choice Then
+                        '逐个提交请假
+                        Dim name As String = DataSet.Tables(0).Rows(a).Item(1)
+
+                        '一直循环 等待上一次Post完成
+                        While True
+                            '上一次Post完成后 执行本次请假
+
+
+                            If actionClass.finishPost Or actionClass.firstPost Then
+                                'MessageBox.Show("第一次" + actionClass.firstPost.ToString)
+                                actionClass.DoLeave(name, startTime, endTime, ifMessage, leaveType)
+
+                                '请假完成 跳出循环
+                                Exit While
+                            End If
+                        End While
+
+                    End If
+                Next
             Next
+
+            If actionClass.unFoundName <> Nothing Then
+                MessageBox.Show("请假完成，未发现以下同学" + actionClass.unFoundName.ToString)
+                actionClass.unFoundName = Nothing
+            Else
+                MessageBox.Show("全部请假完成")
+            End If
+
         Else
             MessageBox.Show("设置未完成")
         End If
